@@ -1,260 +1,446 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>TopX - Help Center</title>
-<style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TopX - Help Center</title>
+  <style>
+    /* ============================================================
+       Design system: simple-ui (light + dark theme tokens)
+       Components used: Navbar, Card + Button, Badge, Footer
+       ============================================================ */
+    :root {
+      --bg: #f4f5f7;
+      --card: #ffffff;
+      --text: #1f2430;
+      --muted: #6b7280;
+      --border: #e5e7eb;
+      --shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+      --accent: #4f6bed;
+      --accent-soft: rgba(79, 107, 237, 0.1);
+    }
 
-  :root {
-    --bg: #070709;          /* Full dark background */
-    --card: #121216;        /* Low dark card */
-    --card-border: #1e1e24;
-    --low-dark: #1a1a20;    /* Low dark button & icon box */
-    --red: #ff2a00;         /* TopX Logo matching Red */
-    --txt: #ffffff;
-    --txt-dim: #8b8b98;
-  }
+    [data-theme="dark"] {
+      --bg: #12141a;
+      --card: #1c1f28;
+      --text: #eceef3;
+      --muted: #9aa1b2;
+      --border: #2a2e3a;
+      --shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+      --accent: #7b92ff;
+      --accent-soft: rgba(123, 146, 255, 0.12);
+    }
 
-  body {
-    background: var(--bg);
-    color: var(--txt);
-    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-  }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
-  /* ---------- HEADER ---------- */
-  header {
-    background: #0a0a0d;
-    border-bottom: 1px solid var(--card-border);
-    padding: 12px 16px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: sticky;
-    top: 0;
-    z-index: 50;
-  }
-  
-  header .logo img {
-    height: 42px; /* Perfect size for mobile */
-    width: auto;
-    display: block;
-    object-fit: contain;
-  }
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background: var(--bg);
+      color: var(--text);
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      transition: background 0.3s, color 0.3s;
+    }
 
-  /* ---------- BANNER ---------- */
-  .banner-container {
-    width: 100%;
-    max-width: 500px; /* Mobile width */
-    margin: 16px auto 0;
-    padding: 0 16px;
-  }
+    /* ---------- Navbar (simple-ui) ---------- */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: var(--card);
+      border-bottom: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      transition: background 0.3s, border-color 0.3s;
+    }
 
-  .banner-container img {
-    width: 100%;
-    height: auto;
-    border-radius: 14px;
-    display: block;
-    border: 1px solid var(--card-border);
-  }
+    .nav-inner {
+      max-width: 960px;
+      margin: 0 auto;
+      height: 64px;
+      padding: 0 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
 
-  /* ---------- SECTION TITLE ---------- */
-  .section-title {
-    width: 100%;
-    max-width: 500px;
-    margin: 28px auto 16px;
-    padding: 0 16px;
-    text-align: center;
-  }
-  .section-title h2 {
-    font-size: 18px;
-    font-weight: 600;
-    letter-spacing: 0.3px;
-  }
-  .section-title p {
-    font-size: 13.5px;
-    color: var(--txt-dim);
-    margin-top: 6px;
-  }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--text);
+    }
+    .logo img { height: 34px; width: auto; display: block; }
+    .logo .brand-name { font-weight: 700; font-size: 1.1rem; }
+    .logo .brand-sub { font-size: 0.78rem; color: var(--muted); font-weight: 500; }
 
-  /* ---------- CARDS (UPPER NEECHE LAYOUT) ---------- */
-  .cards {
-    width: 100%;
-    max-width: 500px; /* Strict width to keep them mobile-like on PC too */
-    margin: 0 auto;
-    padding: 0 16px 40px;
-    display: flex;
-    flex-direction: column; /* Cards hamesha upar-neeche rahenge */
-    gap: 16px; 
-  }
+    .nav-actions { display: flex; align-items: center; gap: 8px; }
 
-  .card {
-    background: var(--card);
-    border: 1px solid var(--card-border);
-    border-radius: 16px;
-    padding: 24px 20px;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    transition: all 0.3s ease;
-  }
-  
-  .card:active {
-    transform: scale(0.98); /* Mobile par tap karne ka feel */
-  }
+    .icon-btn {
+      width: 42px;
+      height: 42px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      background: var(--card);
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: transform 0.2s, background 0.3s;
+    }
+    .icon-btn:hover { transform: scale(1.08); }
+    .icon-btn svg { width: 20px; height: 20px; }
 
-  .icon-box {
-    width: 64px;
-    height: 64px;
-    border-radius: 50%;
-    background: var(--low-dark);
-    border: 1px solid var(--card-border);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 16px;
-  }
-  .icon-box svg { width: 28px; height: 28px; }
+    .theme-toggle .icon-sun { display: none; }
+    [data-theme="dark"] .theme-toggle .icon-sun { display: block; }
+    [data-theme="dark"] .theme-toggle .icon-moon { display: none; }
 
-  .card h3 {
-    font-size: 17px;
-    font-weight: 600;
-    margin-bottom: 6px;
-  }
-  .card span {
-    font-size: 13px;
-    color: var(--txt-dim);
-    margin-bottom: 20px;
-    line-height: 1.5;
-  }
+    /* ---------- Page layout ---------- */
+    .page {
+      width: 100%;
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 32px 16px 48px;
+      flex: 1;
+    }
 
-  /* ---------- BUTTONS ---------- */
-  .btn {
-    width: 100%;
-    padding: 14px 20px;
-    border: none;
-    border-radius: 12px;
-    font-size: 14.5px;
-    font-weight: 600;
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    text-decoration: none;
-    transition: all 0.3s ease;
-  }
-  .btn svg { width: 18px; height: 18px; }
+    /* Banner inside a simple-ui card shell */
+    .banner {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      transition: background 0.3s, border-color 0.3s;
+    }
+    .banner img { width: 100%; height: auto; display: block; }
 
-  /* Main Red Button with 15 Glow */
-  .btn-red {
-    background: var(--red);
-    color: #fff;
-    box-shadow: 0 0 15px rgba(255, 42, 0, 0.45);
-  }
-  .btn-red:active {
-    background: #e62600;
-    box-shadow: 0 0 20px rgba(255, 42, 0, 0.6);
-  }
+    /* ---------- Section title ---------- */
+    .section-title { text-align: center; margin: 32px 0 24px; }
+    .section-title h2 { font-size: 1.4rem; font-weight: 700; margin-bottom: 8px; }
+    .section-title p { color: var(--muted); font-size: 0.95rem; }
 
-  /* Normal Low Dark Button */
-  .btn-dark {
-    background: var(--low-dark);
-    color: #e4e4e9;
-    border: 1px solid var(--card-border);
-  }
-  .btn-dark:active {
-    background: #23232b;
-    border-color: #32323d;
-  }
+    /* ---------- Cards (simple-ui card pattern) ---------- */
+    .cards {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
 
-  /* ---------- FOOTER ---------- */
-  footer {
-    margin-top: auto;
-    text-align: center;
-    padding: 20px;
-    font-size: 12px;
-    color: #4a4a55;
-    border-top: 1px solid var(--card-border);
-  }
-</style>
+    .card {
+      width: 100%;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      box-shadow: var(--shadow);
+      padding: 32px 28px;
+      text-align: center;
+      transition: background 0.3s, border-color 0.3s, transform 0.2s;
+    }
+    .card:hover { transform: translateY(-2px); }
+
+    .badge {
+      display: inline-block;
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+    .badge-primary { background: var(--accent); color: #fff; }
+    .badge-outline { background: transparent; border: 1px solid var(--accent); color: var(--accent); }
+
+    .icon-box {
+      width: 56px;
+      height: 56px;
+      border-radius: 6px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 16px;
+      transition: background 0.3s, color 0.3s;
+    }
+    .icon-box svg { width: 26px; height: 26px; }
+
+    .card h3 { font-size: 1.15rem; font-weight: 700; margin-bottom: 8px; }
+    .card p { color: var(--muted); font-size: 0.95rem; line-height: 1.6; margin-bottom: 20px; }
+
+    /* ---------- Buttons (simple-ui btn pattern) ---------- */
+    .btn {
+      width: 100%;
+      padding: 12px 16px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      font-family: inherit;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      text-decoration: none;
+      transition: transform 0.15s, opacity 0.2s, color 0.2s, border-color 0.2s;
+    }
+    .btn:hover { opacity: 0.9; transform: translateY(-2px); }
+    .btn:active { transform: translateY(0); }
+    .btn svg { width: 18px; height: 18px; }
+
+    .btn-primary { background: var(--accent); color: #fff; }
+    .btn-secondary {
+      background: var(--bg);
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .btn-secondary:hover { opacity: 1; color: var(--accent); border-color: var(--accent); }
+
+    /* ---------- Footer (simple-ui footer pattern) ---------- */
+    .footer {
+      background: var(--card);
+      border-top: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      transition: background 0.3s, border-color 0.3s;
+    }
+
+    .footer-inner {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 40px 16px 24px;
+    }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: 1.6fr 1fr 1fr;
+      gap: 32px;
+    }
+
+    .f-logo { display: flex; align-items: center; gap: 10px; }
+    .f-logo img { height: 30px; width: auto; display: block; }
+    .f-logo span { font-weight: 700; font-size: 1.05rem; }
+
+    .about { color: var(--muted); font-size: 0.9rem; line-height: 1.6; margin-top: 12px; max-width: 280px; }
+
+    .col h4 { font-size: 0.95rem; margin-bottom: 12px; }
+    .col ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .col a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.2s;
+    }
+    .col a:hover { color: var(--accent); }
+
+    .footer-bottom {
+      margin-top: 32px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .copy { color: var(--muted); font-size: 0.85rem; }
+
+    .socials { display: flex; gap: 8px; }
+    .socials a {
+      width: 36px;
+      height: 36px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: color 0.2s, border-color 0.2s, transform 0.2s;
+    }
+    .socials a:hover { color: var(--accent); border-color: var(--accent); transform: translateY(-2px); }
+    .socials svg { width: 18px; height: 18px; }
+
+    /* ---------- Mobile ---------- */
+    @media (max-width: 680px) {
+      .footer-top { grid-template-columns: 1fr 1fr; }
+      .brand { grid-column: 1 / -1; }
+      .footer-bottom { flex-direction: column; align-items: flex-start; }
+      .logo .brand-sub { display: none; }
+    }
+  </style>
 </head>
 <body>
 
-  <!-- HEADER -->
-  <header>
-    <div class="logo">
-      <!-- Folder setup ke hisaab se path: logo/logo.png -->
-      <img src="logo/logo.png" alt="TopX Logo">
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="nav-inner">
+      <a href="#" class="logo">
+        <img src="logo/logo.png" alt="TopX Logo">
+        <span>
+          <span class="brand-name">TopX</span><br>
+          <span class="brand-sub">Help Center</span>
+        </span>
+      </a>
+
+      <div class="nav-actions">
+        <button class="icon-btn theme-toggle" id="themeToggle" aria-label="Toggle theme">
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/>
+          </svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="4"/>
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
+          </svg>
+        </button>
+      </div>
     </div>
   </header>
 
-  <!-- BANNER -->
-  <div class="banner-container">
-    <!-- Folder setup ke hisaab se path: banner/banner.png -->
-    <img src="banner/banner.png" alt="Support Banner">
-  </div>
+  <main class="page">
 
-  <!-- TITLE -->
-  <div class="section-title">
-    <h2>Welcome to Help Center</h2>
-    <p>Select the issue you are facing below.</p>
-  </div>
-
-  <!-- CARDS (Hamesha upper-neeche rahenge) -->
-  <div class="cards">
-
-    <!-- Card 1: Deposit -->
-    <div class="card">
-      <div class="icon-box">
-        <svg viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M12 2v9"/>
-          <path d="M8.5 7.5 12 11l3.5-3.5"/>
-          <path d="M3 13v5a3 3 0 0 0 3 3h12a3 3 0 0 0 3-3v-5"/>
-          <path d="M3 13h5l1.2 2h5.6L16 13h5"/>
-        </svg>
-      </div>
-      <h3>Deposit Problem</h3>
-      <span>Money deducted but not added to your wallet?</span>
-      <!-- Get Help Link -->
-      <a href="#" class="btn btn-red">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-        </svg>
-        Get Help
-      </a>
+    <!-- BANNER -->
+    <div class="banner">
+      <img src="banner/banner.png" alt="Support Banner">
     </div>
 
-    <!-- Card 2: Withdrawal -->
-    <div class="card">
-      <div class="icon-box">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#8b8b98" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M12 11V2"/>
-          <path d="M8.5 5.5 12 2l3.5 3.5"/>
-          <path d="M3 13v5a3 3 0 0 0 3 3h12a3 3 0 0 0 3-3v-5"/>
-          <path d="M3 13h5l1.2 2h5.6L16 13h5"/>
-        </svg>
-      </div>
-      <h3>Withdrawal Problem</h3>
-      <span>Withdrawal processing or failed? Request fast check.</span>
-      <!-- Get Help Link -->
-      <a href="#" class="btn btn-dark">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-        </svg>
-        Get Help
-      </a>
+    <!-- TITLE -->
+    <div class="section-title">
+      <h2>Welcome to Help Center</h2>
+      <p>Select the issue you are facing below.</p>
     </div>
 
-  </div>
+    <!-- CARDS -->
+    <div class="cards">
+
+      <!-- Card 1: Deposit -->
+      <div class="card">
+        <span class="badge badge-primary">Deposit</span>
+        <div class="icon-box">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 2v9"/>
+            <path d="M8.5 7.5 12 11l3.5-3.5"/>
+            <path d="M3 13v5a3 3 0 0 0 3 3h12a3 3 0 0 0 3-3v-5"/>
+            <path d="M3 13h5l1.2 2h5.6L16 13h5"/>
+          </svg>
+        </div>
+        <h3>Deposit Problem</h3>
+        <p>Money deducted but not added to your wallet?</p>
+        <a href="#" class="btn btn-primary">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+          </svg>
+          Get Help
+        </a>
+      </div>
+
+      <!-- Card 2: Withdrawal -->
+      <div class="card">
+        <span class="badge badge-outline">Withdrawal</span>
+        <div class="icon-box">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 11V2"/>
+            <path d="M8.5 5.5 12 2l3.5 3.5"/>
+            <path d="M3 13v5a3 3 0 0 0 3 3h12a3 3 0 0 0 3-3v-5"/>
+            <path d="M3 13h5l1.2 2h5.6L16 13h5"/>
+          </svg>
+        </div>
+        <h3>Withdrawal Problem</h3>
+        <p>Withdrawal processing or failed? Request fast check.</p>
+        <a href="#" class="btn btn-secondary">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+          </svg>
+          Get Help
+        </a>
+      </div>
+
+    </div>
+  </main>
 
   <!-- FOOTER -->
-  <footer>© 2025 TopX Support Center</footer>
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="brand">
+          <div class="f-logo">
+            <img src="logo/logo.png" alt="TopX Logo">
+            <span>TopX</span>
+          </div>
+          <p class="about">24/7 support for deposits, withdrawals and account issues. We are here to help you.</p>
+        </div>
 
+        <div class="col">
+          <h4>Support</h4>
+          <ul>
+            <li><a href="#">Help Center</a></li>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">Contact Us</a></li>
+          </ul>
+        </div>
+
+        <div class="col">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Service</a></li>
+            <li><a href="#">Cookies</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p class="copy">© <span id="year"></span> TopX Support Center. All rights reserved.</p>
+
+        <div class="socials">
+          <a href="#" aria-label="Twitter">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/>
+            </svg>
+          </a>
+          <a href="#" aria-label="GitHub">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.9a3.4 3.4 0 0 0-.9-2.6c3.1-.3 6.4-1.5 6.4-7a5.4 5.4 0 0 0-1.5-3.7 5 5 0 0 0-.1-3.7s-1.2-.3-3.9 1.5a13.4 13.4 0 0 0-7 0C6.4 2.1 5.2 2.4 5.2 2.4a5 5 0 0 0-.1 3.7A5.4 5.4 0 0 0 3.6 9.8c0 5.4 3.3 6.6 6.4 7a3.4 3.4 0 0 0-.9 2.6V22"/>
+            </svg>
+          </a>
+          <a href="#" aria-label="Telegram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M22 2 11 13"/>
+              <path d="M22 2 15 22l-4-9-9-4z"/>
+            </svg>
+          </a>
+          <a href="#" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="2" y="2" width="20" height="20" rx="5"/>
+              <circle cx="12" cy="12" r="4"/>
+              <path d="M17.5 6.5h.01"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Theme toggle (simple-ui pattern: localStorage + prefers-color-scheme)
+    const root = document.documentElement;
+    const toggle = document.getElementById("themeToggle");
+
+    function setTheme(theme) {
+      root.setAttribute("data-theme", theme);
+      try { localStorage.setItem("theme", theme); } catch (e) {}
+    }
+
+    let saved = null;
+    try { saved = localStorage.getItem("theme"); } catch (e) {}
+    setTheme(saved || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"));
+
+    toggle.addEventListener("click", () => {
+      setTheme(root.getAttribute("data-theme") === "dark" ? "light" : "dark");
+    });
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
