@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>TopX - Help Center</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: #070709;          /* Full dark background */
+    --card: #121216;        /* Low dark card */
+    --card-border: #1e1e24;
+    --low-dark: #1a1a20;    /* Low dark button & icon box */
+    --red: #ff2a00;         /* TopX Logo matching Red */
+    --txt: #ffffff;
+    --txt-dim: #8b8b98;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--txt);
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* ---------- HEADER ---------- */
+  header {
+    background: #0a0a0d;
+    border-bottom: 1px solid var(--card-border);
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+  }
+  
+  header .logo img {
+    height: 42px; /* Perfect size for mobile */
+    width: auto;
+    display: block;
+    object-fit: contain;
+  }
+
+  /* ---------- BANNER ---------- */
+  .banner-container {
+    width: 100%;
+    max-width: 500px; /* Mobile width */
+    margin: 16px auto 0;
+    padding: 0 16px;
+  }
+
+  .banner-container img {
+    width: 100%;
+    height: auto;
+    border-radius: 14px;
+    display: block;
+    border: 1px solid var(--card-border);
+  }
+
+  /* ---------- SECTION TITLE ---------- */
+  .section-title {
+    width: 100%;
+    max-width: 500px;
+    margin: 28px auto 16px;
+    padding: 0 16px;
+    text-align: center;
+  }
+  .section-title h2 {
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+  }
+  .section-title p {
+    font-size: 13.5px;
+    color: var(--txt-dim);
+    margin-top: 6px;
+  }
+
+  /* ---------- CARDS (UPPER NEECHE LAYOUT) ---------- */
+  .cards {
+    width: 100%;
+    max-width: 500px; /* Strict width to keep them mobile-like on PC too */
+    margin: 0 auto;
+    padding: 0 16px 40px;
+    display: flex;
+    flex-direction: column; /* Cards hamesha upar-neeche rahenge */
+    gap: 16px; 
+  }
+
+  .card {
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    border-radius: 16px;
+    padding: 24px 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: all 0.3s ease;
+  }
+  
+  .card:active {
+    transform: scale(0.98); /* Mobile par tap karne ka feel */
+  }
+
+  .icon-box {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: var(--low-dark);
+    border: 1px solid var(--card-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+  }
+  .icon-box svg { width: 28px; height: 28px; }
+
+  .card h3 {
+    font-size: 17px;
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+  .card span {
+    font-size: 13px;
+    color: var(--txt-dim);
+    margin-bottom: 20px;
+    line-height: 1.5;
+  }
+
+  /* ---------- BUTTONS ---------- */
+  .btn {
+    width: 100%;
+    padding: 14px 20px;
+    border: none;
+    border-radius: 12px;
+    font-size: 14.5px;
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+  .btn svg { width: 18px; height: 18px; }
+
+  /* Main Red Button with 15 Glow */
+  .btn-red {
+    background: var(--red);
+    color: #fff;
+    box-shadow: 0 0 15px rgba(255, 42, 0, 0.45);
+  }
+  .btn-red:active {
+    background: #e62600;
+    box-shadow: 0 0 20px rgba(255, 42, 0, 0.6);
+  }
+
+  /* Normal Low Dark Button */
+  .btn-dark {
+    background: var(--low-dark);
+    color: #e4e4e9;
+    border: 1px solid var(--card-border);
+  }
+  .btn-dark:active {
+    background: #23232b;
+    border-color: #32323d;
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer {
+    margin-top: auto;
+    text-align: center;
+    padding: 20px;
+    font-size: 12px;
+    color: #4a4a55;
+    border-top: 1px solid var(--card-border);
+  }
+</style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="logo">
+      <!-- Folder setup ke hisaab se path: logo/logo.png -->
+      <img src="logo/logo.png" alt="TopX Logo">
+    </div>
+  </header>
+
+  <!-- BANNER -->
+  <div class="banner-container">
+    <!-- Folder setup ke hisaab se path: banner/banner.png -->
+    <img src="banner/banner.png" alt="Support Banner">
+  </div>
+
+  <!-- TITLE -->
+  <div class="section-title">
+    <h2>Welcome to Help Center</h2>
+    <p>Select the issue you are facing below.</p>
+  </div>
+
+  <!-- CARDS (Hamesha upper-neeche rahenge) -->
+  <div class="cards">
+
+    <!-- Card 1: Deposit -->
+    <div class="card">
+      <div class="icon-box">
+        <svg viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2v9"/>
+          <path d="M8.5 7.5 12 11l3.5-3.5"/>
+          <path d="M3 13v5a3 3 0 0 0 3 3h12a3 3 0 0 0 3-3v-5"/>
+          <path d="M3 13h5l1.2 2h5.6L16 13h5"/>
+        </svg>
+      </div>
+      <h3>Deposit Problem</h3>
+      <span>Money deducted but not added to your wallet?</span>
+      <!-- Get Help Link -->
+      <a href="#" class="btn btn-red">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+        </svg>
+        Get Help
+      </a>
+    </div>
+
+    <!-- Card 2: Withdrawal -->
+    <div class="card">
+      <div class="icon-box">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#8b8b98" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 11V2"/>
+          <path d="M8.5 5.5 12 2l3.5 3.5"/>
+          <path d="M3 13v5a3 3 0 0 0 3 3h12a3 3 0 0 0 3-3v-5"/>
+          <path d="M3 13h5l1.2 2h5.6L16 13h5"/>
+        </svg>
+      </div>
+      <h3>Withdrawal Problem</h3>
+      <span>Withdrawal processing or failed? Request fast check.</span>
+      <!-- Get Help Link -->
+      <a href="#" class="btn btn-dark">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+        </svg>
+        Get Help
+      </a>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <footer>© 2025 TopX Support Center</footer>
+
+</body>
+</html>
