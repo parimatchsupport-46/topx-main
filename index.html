@@ -225,6 +225,9 @@
 
     .f-logo { display: flex; align-items: center; gap: 10px; }
     .f-logo img { height: 30px; width: auto; display: block; }
+    img.logo-dark { display: none; }
+    [data-theme="dark"] img.logo-light { display: none; }
+    [data-theme="dark"] img.logo-dark { display: block; }
     .f-logo span { font-weight: 700; font-size: 1.05rem; }
 
     .about { color: var(--muted); font-size: 0.9rem; line-height: 1.6; margin-top: 12px; max-width: 280px; }
@@ -281,7 +284,8 @@
   <header class="navbar">
     <div class="nav-inner">
       <a href="#" class="logo">
-        <img src="logo/logo.png" alt="TopX Logo">
+        <img class="logo-light" src="logo/logo.png" alt="TopX Logo">
+            <img class="logo-dark" src="logo/logo-dark.png" alt="TopX Logo">
         <span>
           <span class="brand-name">TopX</span><br>
           <span class="brand-sub">Help Center</span>
@@ -369,7 +373,8 @@
       <div class="footer-top">
         <div class="brand">
           <div class="f-logo">
-            <img src="logo/logo.png" alt="TopX Logo">
+            <img class="logo-light" src="logo/logo.png" alt="TopX Logo">
+            <img class="logo-dark" src="logo/logo-dark.png" alt="TopX Logo">
             <span>TopX</span>
           </div>
           <p class="about">24/7 support for deposits, withdrawals and account issues. We are here to help you.</p>
