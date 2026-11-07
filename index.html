@@ -191,13 +191,17 @@
     .btn:active { transform: translateY(0); }
     .btn svg { width: 18px; height: 18px; }
 
-    .btn-primary { background: var(--accent); color: #fff; }
-    .btn-secondary {
-      background: var(--bg);
-      color: var(--text);
-      border: 1px solid var(--border);
+    .btn-primary {
+      background: #ff2a00;
+      color: #fff;
+      box-shadow: 0 0 15px rgba(255, 42, 0, 0.45);
     }
-    .btn-secondary:hover { opacity: 1; color: var(--accent); border-color: var(--accent); }
+    .btn-secondary {
+      background: #1a1a20;
+      color: #e4e4e9;
+      border: 1px solid #32323d;
+    }
+    .btn-secondary:hover { opacity: 1; background: #23232b; }
 
     /* ---------- Footer (simple-ui footer pattern) ---------- */
     .footer {
