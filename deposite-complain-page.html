@@ -10,6 +10,34 @@
     @keyframes pageEnter { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
     @media (prefers-reduced-motion: no-preference) { main { animation: pageEnter 320ms ease-out both; } }
 label{display:block;font-weight:600;margin-bottom:6px;font-size:.92rem}.field{margin-bottom:16px}.field input,.field select{width:100%;padding:12px;border:1px solid var(--border);border-radius:6px;background:var(--bg);color:var(--text);font:inherit}.field input:focus,.field select:focus{outline:2px solid #ff2a00;border-color:#ff2a00}.hint{font-size:.82rem;color:var(--muted);margin-top:6px}.btn-submit{width:100%;padding:13px;font-weight:700;border:0;border-radius:6px;background:#ff2a00;color:#fff;box-shadow:0 0 15px rgba(255,42,0,.45);cursor:pointer;font:inherit}.btn-submit:hover{opacity:.9;transform:translateY(-1px)}.form-dialog{margin:auto;width:min(90%,360px);padding:24px;border:1px solid var(--border);border-radius:6px;background:var(--card);color:var(--text);text-align:center}.form-dialog::backdrop{background:rgba(0,0,0,.6)}
+
+/* Deposit complaint form */
+body { min-height: 100vh; display: flex; flex-direction: column; }
+header { box-shadow: 0 4px 20px rgba(0,0,0,.035); }
+.nav { min-height: 68px; }
+.brand { gap: 12px; letter-spacing: -.02em; }
+#themeToggle { width: 42px; height: 42px; display: grid; place-items: center; font-size: 1.2rem; }
+main { width: 100%; max-width: 640px; flex: 1; padding: 36px 16px 56px; }
+.back { display: inline-flex; align-items: center; padding: 4px 0; font-weight: 600; transition: color .2s; }
+.back:hover { color: #ff2a00; text-decoration: none; }
+h1 { font-size: clamp(1.55rem, 4vw, 2rem); letter-spacing: -.035em; margin: 25px 0 22px; }
+.content { padding: 32px; border-radius: 12px; box-shadow: var(--shadow); }
+#depositForm { display: grid; gap: 20px; }
+.field { margin: 0; }
+label { margin-bottom: 8px; font-size: .88rem; letter-spacing: .01em; }
+.field input, .field select { min-height: 50px; padding: 12px 14px; border-radius: 8px; transition: border-color .2s, box-shadow .2s; }
+.field input:hover, .field select:hover { border-color: #a3a8b3; }
+.field input:focus, .field select:focus { outline: 0; border-color: #ff2a00; box-shadow: 0 0 0 3px rgba(255,42,0,.15); }
+.field select { cursor: pointer; }
+.field input[type=file] { padding: 8px; cursor: pointer; font-size: .87rem; }
+.field input[type=file]::file-selector-button { border: 0; border-radius: 6px; background: var(--card); color: var(--text); padding: 8px 12px; margin-right: 12px; cursor: pointer; font: inherit; font-weight: 600; }
+.hint { line-height: 1.5; margin: 7px 0 0; }
+.btn-submit { min-height: 52px; border-radius: 8px; font-weight: 700; margin-top: 4px; transition: transform .2s, opacity .2s, box-shadow .2s; }
+.btn-submit:focus-visible, button:focus-visible, a:focus-visible { outline: 3px solid #ff2a00; outline-offset: 3px; }
+.form-dialog { border-radius: 12px; box-shadow: var(--shadow); }
+footer { margin-top: auto; }
+@media (max-width:600px) { main { padding-top: 26px; } .content { padding: 22px; } #depositForm { gap: 18px; } }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition-duration: 0s !important; } }
 </style></head><body><header><div class="nav"><a class="brand" href="index.html"><img class="logo-light" src="logo/logo.png" alt="TopX"><img class="logo-dark" src="logo/logo-dark.png" alt="TopX"><span>Help Center</span></a><button id="themeToggle" type="button" aria-label="Toggle light and dark mode">◐</button></div></header><main><a class="back" href="index.html">← Back to Help Center</a><h1>Deposit Complain Page</h1><div class="content"><section><form id="depositForm" novalidate>
 <div class="field"><label for="username">User Name</label><input id="username" name="username" type="text" autocomplete="username" required></div>
 <div class="field"><label for="mobile">Mobile Number</label><input id="mobile" name="mobile" type="tel" autocomplete="tel" inputmode="numeric" required></div>
