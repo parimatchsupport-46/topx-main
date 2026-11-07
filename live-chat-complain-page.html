@@ -40,26 +40,7 @@
       .menu-dialog[open]::backdrop { animation: backdropEnter 250ms ease-out both; }
     }
 
-  </style></head><body><header class="navbar"><div class="nav-inner"><a href="index.html" class="logo"><img class="logo-light" src="logo/logo.png" alt="TopX"><img class="logo-dark" src="logo/logo-dark.png" alt="TopX"><span>Help Center</span></a><div class="nav-actions"><button class="icon-btn" id="menuOpen" type="button" aria-label="Open menu" aria-haspopup="dialog" aria-controls="menuDialog"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button></div></div></header><main><a class="back" href="index.html">← Back to Help Center</a><h1>Complain Page</h1><p class="intro">Live Chat</p><div class="content"><section><h2>Live Chat</h2><p>Form fields will be added here.</p></section></div></main><footer>© <span id="year"></span> TopX Support Center. All rights reserved.</footer><script>const root=document.documentElement;document.getElementById('themeToggle').addEventListener('click',()=>{const theme=root.dataset.theme==='dark'?'light':'dark';root.dataset.theme=theme;try{localStorage.setItem('theme',theme)}catch(e){}});document.getElementById('year').textContent=new Date().getFullYear();
-    const menuOpen = document.getElementById("menuOpen");
-    const menuDialog = document.getElementById("menuDialog");
-    menuOpen.addEventListener("click", () => menuDialog.showModal());
-    menuDialog.addEventListener("close", () => menuOpen.focus());
-    menuDialog.addEventListener("click", (event) => {
-      if (event.target === menuDialog) {
-        const rect = menuDialog.getBoundingClientRect();
-        if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) menuDialog.close();
-      }
-    });
-    const root = document.documentElement;
-    const toggle = document.getElementById("themeToggle");
-    function setTheme(theme) { root.setAttribute("data-theme", theme); try { localStorage.setItem("theme", theme); } catch (e) {} }
-    let saved = null;
-    try { saved = localStorage.getItem("theme"); } catch (e) {}
-    setTheme(saved || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"));
-    toggle.addEventListener("click", () => { setTheme(root.getAttribute("data-theme") === "dark" ? "light" : "dark"); });
-</script>
-  <dialog id="menuDialog" class="menu-dialog" aria-labelledby="menuTitle">
+  </style></head><body><header class="navbar"><div class="nav-inner"><a href="index.html" class="logo"><img class="logo-light" src="logo/logo.png" alt="TopX"><img class="logo-dark" src="logo/logo-dark.png" alt="TopX"><span>Help Center</span></a><div class="nav-actions"><button class="icon-btn" id="menuOpen" type="button" aria-label="Open menu" aria-haspopup="dialog" aria-controls="menuDialog"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button></div></div></header><main><a class="back" href="index.html">← Back to Help Center</a><h1>Complain Page</h1><p class="intro">Live Chat</p><div class="content"><section><h2>Live Chat</h2><p>Form fields will be added here.</p></section></div></main><footer>© <span id="year"></span> TopX Support Center. All rights reserved.</footer>  <dialog id="menuDialog" class="menu-dialog" aria-labelledby="menuTitle">
     <div class="menu-header"><h2 id="menuTitle">Menu</h2><form method="dialog"><button type="submit" class="icon-btn" aria-label="Close menu">✕</button></form></div>
     <nav class="menu-links" aria-label="Main menu">
       <a href="index.html">Home</a>
@@ -79,5 +60,25 @@
       </button>
     </div>
   </dialog>
+<script>document.getElementById('year').textContent=new Date().getFullYear();
+    const menuOpen = document.getElementById("menuOpen");
+    const menuDialog = document.getElementById("menuDialog");
+    menuOpen.addEventListener("click", () => menuDialog.showModal());
+    menuDialog.addEventListener("close", () => menuOpen.focus());
+    menuDialog.addEventListener("click", (event) => {
+      if (event.target === menuDialog) {
+        const rect = menuDialog.getBoundingClientRect();
+        if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) menuDialog.close();
+      }
+    });
+    const root = document.documentElement;
+    const toggle = document.getElementById("themeToggle");
+    function setTheme(theme) { root.setAttribute("data-theme", theme); try { localStorage.setItem("theme", theme); } catch (e) {} }
+    let saved = null;
+    try { saved = localStorage.getItem("theme"); } catch (e) {}
+    setTheme(saved || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"));
+    toggle.addEventListener("click", () => { setTheme(root.getAttribute("data-theme") === "dark" ? "light" : "dark"); });
+</script>
+
 
 </body></html>

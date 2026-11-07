@@ -82,26 +82,7 @@ footer { margin-top: auto; }
 <div class="field"><label for="problem">Select Problem</label><select id="problem" name="problem" required><option value="" selected disabled>Select Problem</option><option value="processing">Processing</option><option value="pending">Pending</option><option value="failed">Failed</option><option value="not-received">Not Received in Account</option></select></div>
 <div class="field"><label for="issueImage">Upload Issue Image</label><input id="issueImage" name="issueImage" type="file" accept="image/*" required></div>
 <button class="btn-submit" type="submit" disabled>Submit Now</button>
-</form></section></div><dialog id="formDialog" class="form-dialog" aria-labelledby="formDialogTitle"><h2 id="formDialogTitle">Coming Soon</h2><p>Submission will be available soon.</p><form method="dialog"><button type="submit">Close</button></form></dialog></main><footer>© <span id="year"></span> TopX Support Center. All rights reserved.</footer><script>document.getElementById('withdrawalForm').addEventListener('submit',function(e){e.preventDefault();if(!this.checkValidity()){this.reportValidity();return;}document.getElementById('formDialog').showModal();});const withdrawalForm=document.getElementById('withdrawalForm'),submitBtn=withdrawalForm.querySelector('.btn-submit'),fileInput=document.getElementById('issueImage');function refreshForm(){fileInput.classList.toggle('has-file',fileInput.files.length>0);submitBtn.disabled=!withdrawalForm.checkValidity();}withdrawalForm.addEventListener('input',refreshForm);withdrawalForm.addEventListener('change',refreshForm);refreshForm();document.getElementById('year').textContent=new Date().getFullYear();
-    const menuOpen = document.getElementById("menuOpen");
-    const menuDialog = document.getElementById("menuDialog");
-    menuOpen.addEventListener("click", () => menuDialog.showModal());
-    menuDialog.addEventListener("close", () => menuOpen.focus());
-    menuDialog.addEventListener("click", (event) => {
-      if (event.target === menuDialog) {
-        const rect = menuDialog.getBoundingClientRect();
-        if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) menuDialog.close();
-      }
-    });
-    const root = document.documentElement;
-    const toggle = document.getElementById("themeToggle");
-    function setTheme(theme) { root.setAttribute("data-theme", theme); try { localStorage.setItem("theme", theme); } catch (e) {} }
-    let saved = null;
-    try { saved = localStorage.getItem("theme"); } catch (e) {}
-    setTheme(saved || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"));
-    toggle.addEventListener("click", () => { setTheme(root.getAttribute("data-theme") === "dark" ? "light" : "dark"); });
-</script>
-  <dialog id="menuDialog" class="menu-dialog" aria-labelledby="menuTitle">
+</form></section></div><dialog id="formDialog" class="form-dialog" aria-labelledby="formDialogTitle"><h2 id="formDialogTitle">Coming Soon</h2><p>Submission will be available soon.</p><form method="dialog"><button type="submit">Close</button></form></dialog></main><footer>© <span id="year"></span> TopX Support Center. All rights reserved.</footer>  <dialog id="menuDialog" class="menu-dialog" aria-labelledby="menuTitle">
     <div class="menu-header"><h2 id="menuTitle">Menu</h2><form method="dialog"><button type="submit" class="icon-btn" aria-label="Close menu">✕</button></form></div>
     <nav class="menu-links" aria-label="Main menu">
       <a href="index.html">Home</a>
@@ -121,5 +102,25 @@ footer { margin-top: auto; }
       </button>
     </div>
   </dialog>
+<script>document.getElementById('withdrawalForm').addEventListener('submit',function(e){e.preventDefault();if(!this.checkValidity()){this.reportValidity();return;}document.getElementById('formDialog').showModal();});const withdrawalForm=document.getElementById('withdrawalForm'),submitBtn=withdrawalForm.querySelector('.btn-submit'),fileInput=document.getElementById('issueImage');function refreshForm(){fileInput.classList.toggle('has-file',fileInput.files.length>0);submitBtn.disabled=!withdrawalForm.checkValidity();}withdrawalForm.addEventListener('input',refreshForm);withdrawalForm.addEventListener('change',refreshForm);refreshForm();document.getElementById('year').textContent=new Date().getFullYear();
+    const menuOpen = document.getElementById("menuOpen");
+    const menuDialog = document.getElementById("menuDialog");
+    menuOpen.addEventListener("click", () => menuDialog.showModal());
+    menuDialog.addEventListener("close", () => menuOpen.focus());
+    menuDialog.addEventListener("click", (event) => {
+      if (event.target === menuDialog) {
+        const rect = menuDialog.getBoundingClientRect();
+        if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) menuDialog.close();
+      }
+    });
+    const root = document.documentElement;
+    const toggle = document.getElementById("themeToggle");
+    function setTheme(theme) { root.setAttribute("data-theme", theme); try { localStorage.setItem("theme", theme); } catch (e) {} }
+    let saved = null;
+    try { saved = localStorage.getItem("theme"); } catch (e) {}
+    setTheme(saved || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"));
+    toggle.addEventListener("click", () => { setTheme(root.getAttribute("data-theme") === "dark" ? "light" : "dark"); });
+</script>
+
 
 </body></html>
