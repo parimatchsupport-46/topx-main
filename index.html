@@ -277,7 +277,18 @@
       .footer-bottom { flex-direction: column; align-items: flex-start; }
       .logo .brand-sub { display: none; }
     }
-  </style>
+  
+    /* Subtle page entrance; respect reduced-motion preferences. */
+    @keyframes pageEnter { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    @media (prefers-reduced-motion: no-preference) { main { animation: pageEnter 320ms ease-out both; } }
+
+    @keyframes menuEnter { from { opacity: 0; transform: translateX(-24px); } to { opacity: 1; transform: translateX(0); } }
+    @keyframes backdropEnter { from { opacity: 0; } to { opacity: 1; } }
+    @media (prefers-reduced-motion: no-preference) {
+      .menu-dialog[open] { animation: menuEnter 250ms ease-out both; }
+      .menu-dialog[open]::backdrop { animation: backdropEnter 250ms ease-out both; }
+    }
+</style>
 </head>
 <body>
 
