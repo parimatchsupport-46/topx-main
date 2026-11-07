@@ -38,23 +38,16 @@ label { margin-bottom: 8px; font-size: .88rem; letter-spacing: .01em; }
 footer { margin-top: auto; }
 @media (max-width:600px) { main { padding-top: 26px; } .content { padding: 22px; } #depositForm { gap: 18px; } }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition-duration: 0s !important; } }
-/* Keep each field title inside its input card. */
-.field { position: relative; }
-.field label { position: absolute; top: 9px; left: 15px; right: auto; z-index: 1; margin: 0; text-align: left; font-size: .72rem; line-height: 1.2; color: var(--muted); pointer-events: none; }
-.field input, .field select { min-height: 64px; padding: 26px 14px 9px; }
-.field input[type=file] { min-height: 76px; padding: 29px 8px 8px; }
-/* Empty text fields show their label vertically centered on the left. */
-.field label { transition: top .2s, transform .2s, font-size .2s; }
-.field:has(input:not([type=file]):placeholder-shown:not(:focus)) label,
-.field:has(select:invalid:not(:focus)) label { top: 50%; transform: translateY(-50%); font-size: .9rem; }
-.field select:invalid { color: transparent; }
+/* Visible labels remain above fields; placeholders sit inside. */
+.field input::placeholder { color: var(--muted); opacity: 1; }
+.field select:invalid { color: var(--muted); }
 .field select option { color: var(--text); background: var(--card); }
 </style></head><body><header><div class="nav"><a class="brand" href="index.html"><img class="logo-light" src="logo/logo.png" alt="TopX"><img class="logo-dark" src="logo/logo-dark.png" alt="TopX"><span>Help Center</span></a></div></header><main><a class="back" href="index.html">← Back to Help Center</a><h1>Deposit Complain Page</h1><div class="content"><section><form id="depositForm" novalidate>
-<div class="field"><label for="username">User Name</label><input placeholder=" " id="username" name="username" type="text" autocomplete="username" required></div>
-<div class="field"><label for="mobile">Mobile Number</label><input placeholder=" " id="mobile" name="mobile" type="tel" autocomplete="tel" inputmode="numeric" required></div>
-<div class="field"><label for="email">Email ID</label><input placeholder=" " id="email" name="email" type="email" autocomplete="email" required></div>
-<div class="field"><label for="password">Set Password</label><input placeholder=" " id="password" name="password" type="password" autocomplete="new-password" minlength="6" required></div>
-<div class="field"><label for="problem">Select Problem</label><select id="problem" name="problem" required><option value="" selected disabled>—</option><option value="processing">Processing</option><option value="pending">Pending</option><option value="failed">Failed</option><option value="not-received">Not Received in Account</option></select></div>
+<div class="field"><label for="username">User Name</label><input placeholder="User Name" id="username" name="username" type="text" autocomplete="username" required></div>
+<div class="field"><label for="mobile">Mobile Number</label><input placeholder="Mobile Number" id="mobile" name="mobile" type="tel" autocomplete="tel" inputmode="numeric" required></div>
+<div class="field"><label for="email">Email ID</label><input placeholder="Email ID" id="email" name="email" type="email" autocomplete="email" required></div>
+<div class="field"><label for="password">Set Password</label><input placeholder="Set Password" id="password" name="password" type="password" autocomplete="new-password" minlength="6" required></div>
+<div class="field"><label for="problem">Select Problem</label><select id="problem" name="problem" required><option value="" selected disabled>Select Problem</option><option value="processing">Processing</option><option value="pending">Pending</option><option value="failed">Failed</option><option value="not-received">Not Received in Account</option></select></div>
 <div class="field"><label for="paymentImage">Upload Payment Image</label><input id="paymentImage" name="paymentImage" type="file" accept="image/*" required></div>
 <button class="btn-submit" type="submit">Submit Now</button>
 </form></section></div><dialog id="formDialog" class="form-dialog" aria-labelledby="formDialogTitle"><h2 id="formDialogTitle">Coming Soon</h2><p>Submission will be available soon.</p><form method="dialog"><button type="submit">Close</button></form></dialog></main><footer>© <span id="year"></span> TopX Support Center. All rights reserved.</footer><script>document.getElementById('depositForm').addEventListener('submit',function(e){e.preventDefault();if(!this.checkValidity()){this.reportValidity();return;}document.getElementById('formDialog').showModal();});document.getElementById('year').textContent=new Date().getFullYear();</script></body></html>
