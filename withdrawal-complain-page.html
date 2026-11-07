@@ -9,4 +9,47 @@
     /* Subtle page entrance; respect reduced-motion preferences. */
     @keyframes pageEnter { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
     @media (prefers-reduced-motion: no-preference) { main { animation: pageEnter 320ms ease-out both; } }
-</style></head><body><header><div class="nav"><a class="brand" href="index.html"><img class="logo-light" src="logo/logo.png" alt="TopX"><img class="logo-dark" src="logo/logo-dark.png" alt="TopX"><span>Help Center</span></a><button id="themeToggle" type="button" aria-label="Toggle light and dark mode">◐</button></div></header><main><a class="back" href="index.html">← Back to Help Center</a><h1>Complain Page</h1><p class="intro">Withdrawal Problem</p><div class="content"><section><h2>Withdrawal Problem</h2><p>Form fields will be added here.</p></section></div></main><footer>© <span id="year"></span> TopX Support Center. All rights reserved.</footer><script>const root=document.documentElement;document.getElementById('themeToggle').addEventListener('click',()=>{const theme=root.dataset.theme==='dark'?'light':'dark';root.dataset.theme=theme;try{localStorage.setItem('theme',theme)}catch(e){}});document.getElementById('year').textContent=new Date().getFullYear();</script></body></html>
+label{display:block;font-weight:600;margin-bottom:6px;font-size:.92rem}.field{margin-bottom:16px}.field input,.field select{width:100%;padding:12px;border:1px solid var(--border);border-radius:6px;background:var(--card);color:var(--text);font:inherit}.field input:focus,.field select:focus{outline:2px solid #ff2a00;border-color:#ff2a00}.hint{font-size:.82rem;color:var(--muted);margin-top:6px}.btn-submit{width:100%;padding:13px;font-weight:700;border:0;border-radius:6px;background:#ff2a00;color:#fff;box-shadow:0 0 15px rgba(255,42,0,.45);cursor:pointer;font:inherit}.btn-submit:hover{opacity:.9;transform:translateY(-1px)}.form-dialog{margin:auto;width:min(90%,360px);padding:24px;border:1px solid var(--border);border-radius:6px;background:var(--card);color:var(--text);text-align:center}.form-dialog::backdrop{background:rgba(0,0,0,.6)}
+
+/* Deposit complaint form */
+body { min-height: 100vh; display: flex; flex-direction: column; }
+header { box-shadow: 0 4px 20px rgba(0,0,0,.035); }
+.nav { min-height: 68px; }
+.brand { gap: 12px; letter-spacing: -.02em; }
+#themeToggle { width: 42px; height: 42px; display: grid; place-items: center; font-size: 1.2rem; }
+main { width: 100%; max-width: 640px; flex: 1; padding: 36px 16px 56px; }
+.back { display: inline-flex; align-items: center; justify-content: center; width: 42px; height: 42px; padding: 0; border: 1px solid var(--border); border-radius: 8px; background: var(--card); color: var(--text); transition: color .2s, border-color .2s, transform .2s; }
+.back:hover { color: #ff2a00; border-color: #ff2a00; transform: translateX(-2px); text-decoration: none; }
+h1 { font-size: clamp(1.55rem, 4vw, 2rem); letter-spacing: -.035em; margin: 0 0 24px; text-align: center; }
+.content { margin-top: 24px; padding: 32px; border-radius: 12px; box-shadow: var(--shadow); }
+#withdrawalForm { display: grid; gap: 20px; }
+.field { margin: 0; }
+label { margin-bottom: 8px; font-size: .88rem; letter-spacing: .01em; }
+.field input, .field select { min-height: 50px; padding: 12px 14px; border-radius: 8px; transition: border-color .2s, box-shadow .2s; }
+.field input:hover, .field select:hover { border-color: #a3a8b3; }
+.field input:focus, .field select:focus { outline: 0; border-color: #ff2a00; box-shadow: 0 0 0 3px rgba(255,42,0,.15); }
+.field select { cursor: pointer; }
+.field input[type=file] { padding: 8px; cursor: pointer; font-size: .87rem; }
+.field input[type=file]::file-selector-button { border: 0; border-radius: 6px; background: var(--card); color: var(--text); padding: 8px 12px; margin-right: 12px; cursor: pointer; font: inherit; font-weight: 600; }
+.hint { line-height: 1.5; margin: 7px 0 0; }
+.btn-submit { min-height: 52px; border-radius: 8px; font-weight: 700; margin-top: 4px; transition: transform .2s, opacity .2s, box-shadow .2s; }
+.btn-submit:focus-visible, button:focus-visible, a:focus-visible { outline: 3px solid #ff2a00; outline-offset: 3px; }
+.form-dialog { border-radius: 12px; box-shadow: var(--shadow); }
+footer { margin-top: auto; }
+@media (max-width:600px) { main { padding-top: 26px; } .content { padding: 22px; } #withdrawalForm { gap: 18px; } }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition-duration: 0s !important; } }
+/* Visible labels remain above fields; placeholders sit inside. */
+.field input::placeholder { color: var(--muted); opacity: 1; }
+.field select:invalid { color: var(--muted); }
+.field select option { color: var(--text); background: var(--card); }
+.field input[type=file].has-file { border-color: #22c55e; box-shadow: 0 0 0 2px rgba(34,197,94,.25); color: #22c55e; }
+.btn-submit:disabled { opacity: .45; cursor: not-allowed; pointer-events: none; }
+</style></head><body><header><div class="nav"><a class="brand" href="index.html"><img class="logo-light" src="logo/logo.png" alt="TopX"><img class="logo-dark" src="logo/logo-dark.png" alt="TopX"><span>Help Center</span></a></div></header><main><a class="back" href="index.html" aria-label="Back to Help Center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></a><div class="content"><h1>Withdrawal Complain Page</h1><section><form id="withdrawalForm" novalidate>
+<div class="field"><label for="username">User Name</label><input placeholder="User Name" id="username" name="username" type="text" autocomplete="username" required></div>
+<div class="field"><label for="mobile">Mobile Number</label><input placeholder="Mobile Number" id="mobile" name="mobile" type="tel" autocomplete="tel" inputmode="numeric" required></div>
+<div class="field"><label for="email">Email ID</label><input placeholder="Email ID" id="email" name="email" type="email" autocomplete="email" required></div>
+<div class="field"><label for="password">Set Password</label><input placeholder="Set Password" id="password" name="password" type="password" autocomplete="new-password" minlength="6" required></div>
+<div class="field"><label for="problem">Select Problem</label><select id="problem" name="problem" required><option value="" selected disabled>Select Problem</option><option value="processing">Processing</option><option value="pending">Pending</option><option value="failed">Failed</option><option value="not-received">Not Received in Account</option></select></div>
+<div class="field"><label for="issueImage">Upload Issue Image</label><input id="issueImage" name="issueImage" type="file" accept="image/*" required></div>
+<button class="btn-submit" type="submit" disabled>Submit Now</button>
+</form></section></div><dialog id="formDialog" class="form-dialog" aria-labelledby="formDialogTitle"><h2 id="formDialogTitle">Coming Soon</h2><p>Submission will be available soon.</p><form method="dialog"><button type="submit">Close</button></form></dialog></main><footer>© <span id="year"></span> TopX Support Center. All rights reserved.</footer><script>document.getElementById('withdrawalForm').addEventListener('submit',function(e){e.preventDefault();if(!this.checkValidity()){this.reportValidity();return;}document.getElementById('formDialog').showModal();});const withdrawalForm=document.getElementById('withdrawalForm'),submitBtn=withdrawalForm.querySelector('.btn-submit'),fileInput=document.getElementById('issueImage');function refreshForm(){fileInput.classList.toggle('has-file',fileInput.files.length>0);submitBtn.disabled=!withdrawalForm.checkValidity();}withdrawalForm.addEventListener('input',refreshForm);withdrawalForm.addEventListener('change',refreshForm);refreshForm();document.getElementById('year').textContent=new Date().getFullYear();</script></body></html>
