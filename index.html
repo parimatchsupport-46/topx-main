@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>TopX - Help Center</title>
+  <script>try{document.documentElement.dataset.theme=localStorage.getItem("theme")||"dark"}catch(e){document.documentElement.dataset.theme="dark"}</script>
   <style>
     /* ============================================================
        Design system: simple-ui (light + dark theme tokens)
@@ -300,7 +301,6 @@
         <img class="logo-light" src="logo/logo.png" alt="TopX Logo">
             <img class="logo-dark" src="logo/logo-dark.png" alt="TopX Logo">
         <span>
-          <span class="brand-name">TopX</span><br>
           <span class="brand-sub">Help Center</span>
         </span>
       </a>
@@ -492,7 +492,7 @@
     contactLink.addEventListener("click", (event) => { event.preventDefault(); contactDialog.showModal(); });
     contactDialog.addEventListener("close", () => contactLink.focus());
 
-    // Theme toggle (simple-ui pattern: localStorage + prefers-color-scheme)
+    // Theme toggle: restore saved preference, default to dark
     const root = document.documentElement;
     const toggle = document.getElementById("themeToggle");
 
@@ -503,7 +503,7 @@
 
     let saved = null;
     try { saved = localStorage.getItem("theme"); } catch (e) {}
-    setTheme(saved || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"));
+    setTheme(saved || "dark");
 
     toggle.addEventListener("click", () => {
       setTheme(root.getAttribute("data-theme") === "dark" ? "light" : "dark");
